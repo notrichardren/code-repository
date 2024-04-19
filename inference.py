@@ -36,3 +36,7 @@ tokenizer: LlamaTokenizer = LlamaTokenizer.from_pretrained(checkpoint_location)
 # Use model
 
 print(tokenizer.decode(model.generate(**({ k: torch.unsqueeze(torch.tensor(v), 0) for k,v in tokenizer("Hi there, how are you doing?").items()}), max_new_tokens = 20).squeeze()))
+
+# Prompt
+
+base_prompt = "<s>[INST]\n<<SYS>>\n{system_prompt}\n<</SYS>>\n\n{user_prompt}[/INST]"
